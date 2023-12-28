@@ -1,9 +1,9 @@
-class CatsController < ApplicationController
+class Api::CatsController < ApplicationController
   before_action :set_cat, only: %i[ show update destroy ]
 
   # GET /cats
   def index
-    @cats = Cat.all
+    @cats = Cat.all.sorted_by_id
 
     render json: @cats
   end
@@ -18,7 +18,7 @@ class CatsController < ApplicationController
     @cat = Cat.new(cat_params)
 
     if @cat.save
-      render json: @cat, status: :created, location: @cat
+      render json: @cat, status: :created, location: api_cat_url(@cat)
     else
       render json: @cat.errors, status: :unprocessable_entity
     end
@@ -35,7 +35,11 @@ class CatsController < ApplicationController
 
   # DELETE /cats/1
   def destroy
-    @cat.destroy
+    if @cat.destroy
+      render json: "Id #{@cat.id} was deleted", status: :accepted
+    else
+      render json: @cat.errors, status: :unprocessable_entity
+    end
   end
 
   private
