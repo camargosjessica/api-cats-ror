@@ -1,5 +1,8 @@
 class Api::CatsController < ApplicationController
-  before_action :set_cat, only: %i[ show update destroy ]
+  include Authenticable
+
+  before_action :authenticate, except: %i[index show]
+  before_action :set_cat, only: %i[show update destroy]
 
   # GET /cats
   def index
@@ -43,13 +46,12 @@ class Api::CatsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_cat
-      @cat = Cat.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def cat_params
-      params.require(:cat).permit(:name)
-    end
+  def set_cat
+    @cat = Cat.find(params[:id])
+  end
+
+  def cat_params
+    params.require(:cat).permit(:name)
+  end
 end
