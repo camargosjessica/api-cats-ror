@@ -1,12 +1,12 @@
 class Api::CatsController < ApplicationController
   include Authenticable
 
-  before_action :authenticate, except: %i[index show]
+  before_action :authenticate
   before_action :set_cat, only: %i[show update destroy]
 
   # GET /cats
   def index
-    @cats = Cat.search(params[:term]).sorted_by_id
+    @cats = Cat.by_token(@token).search(params[:term]).sorted_by_id
 
     render json: @cats
   end
@@ -18,7 +18,7 @@ class Api::CatsController < ApplicationController
 
   # POST /cats
   def create
-    @cat = Cat.new(cat_params)
+    @cat = Cat.new(cat_params.to_h.merge!({ token: @token }))
 
     if @cat.save
       render json: @cat, status: :created, location: api_cat_url(@cat)
@@ -48,7 +48,7 @@ class Api::CatsController < ApplicationController
   private
 
   def set_cat
-    @cat = Cat.find(params[:id])
+    @cat = Cat.by_token(@token).find(params[:id])
   end
 
   def cat_params
