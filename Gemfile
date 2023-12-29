@@ -20,7 +20,4 @@ group :development do
   gem "listen", "~> 3.3"
   gem "spring"
 end
-
-group :production do
-  gem "pg", "~> 1.5"
-end
+gem "pg", "~> 1.5"
