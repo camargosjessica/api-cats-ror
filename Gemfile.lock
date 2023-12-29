@@ -195,7 +195,7 @@ DEPENDENCIES
   debug
   faker (~> 3.2)
   listen (~> 3.3)
-  pg (~> 1.5)
+  pg (~> 1.2)
   puma (~> 5.0)
   rails (~> 7.0.8)
   spring
