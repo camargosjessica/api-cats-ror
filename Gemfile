@@ -13,6 +13,7 @@ group :development, :test do
   gem "sqlite3", "~> 1.4"
   gem "byebug", platforms: %i[mri mingw x64_mingw]
   gem "debug", platforms: %i[mri mingw x64_mingw]
+  gem "rspec-rails", "~> 6.1"
 end
 
 group :development do
@@ -24,3 +25,13 @@ end
 group :production do
   gem "pg", "~> 1.2"
 end
+
+group :test do
+  gem "shoulda-matchers", "~> 6.0"
+  gem "simplecov", "~> 0.22.0", require: false
+end
+
+gem "bundler-audit", "~> 0.9.1"
+
+gem "brakeman", "~> 6.1"
+gem "rubocop", "~> 1.59", require: false
