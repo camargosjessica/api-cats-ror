@@ -13,10 +13,10 @@ group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
   gem "debug", platforms: %i[mri mingw x64_mingw]
   gem "sqlite3", "~> 1.4"
+  gem "faker", "~> 3.2"
 end
 
 group :development do
-  gem "faker", "~> 3.2"
   gem "listen", "~> 3.3"
   gem "spring"
 end
