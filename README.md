@@ -1,24 +1,54 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+CRUD Cats names
 
-Things you may want to cover:
+<table>
+  <tr>
+    <td>Ruby version</td>
+    <td>
+      3.1.3
+    </td>
+  </tr>
+  <tr>
+    <td>Rails version</td>
+    <td>
+      7.0.8
+    </td>
+  </tr>
+  <tr>
+    <td>Database</td>
+    <td>
+      SQLite3 (dev) / PostgreSQL (prod)
+    </td>
+  </tr>
+</table>
 
-* Ruby version
+```bash
+# clone the project
+git clone https://github.com/camargosjessica/api-cats-ror.git
 
-* System dependencies
+# enter the cloned directory
+cd api-cats-ror
 
-* Configuration
+# install Ruby on Rails dependencies
+bundle install
 
-* Database creation
+# create the development and test databases
+rails db:create
 
-* Database initialization
+# create the tables
+rails db:migrate
 
-* How to run the test suite
+# run the project
+rails s
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+The backend is available at `http://localhost:3000`.
 
-* Deployment instructions
+## Tests
 
-* ...
+To run the tests:
+
+```bash
+rspec
+```
