@@ -5,7 +5,7 @@ module Authenticable
     @token ||= request.headers['Authorization']
 
     unless valid_token? # rubocop:disable Style/GuardClause
-      render json: { errors: 'Não autorizado', status: :unauthorized }
+      render json: { errors: 'Não autorizado' }, status: :unauthorized
     end
   end
 

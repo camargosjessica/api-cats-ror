@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Cat, type: :model do
-  subject { Cat.new(name: 'Bruce', token: '1234567890') }
+  subject(:cat) { build :cat }
 
   describe 'validations' do
     it { should validate_presence_of(:name) }
@@ -12,10 +12,10 @@ RSpec.describe Cat, type: :model do
 
   describe 'scope' do
     it '#by_token' do
-      expect(Cat.where(token: '1234567890').to_sql).to eq Cat.by_token('1234567890').to_sql
+      expect(Cat.where(token: cat.token).to_sql).to eq Cat.by_token(cat.token).to_sql
     end
     it '#search' do
-      expect(Cat.where('LOWER(name) LIKE ?', "%bruce%").to_sql).to eq Cat.search('Bruce').to_sql
+      expect(Cat.where('LOWER(name) LIKE ?', "%#{cat.name.downcase}%").to_sql).to eq Cat.search(cat.name).to_sql
     end
     it '#sorted_by_id' do
       expect(Cat.order(:id).to_sql).to eq Cat.sorted_by_id.to_sql

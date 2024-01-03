@@ -14,15 +14,17 @@ group :development, :test do
   gem 'bundler-audit', '~> 0.9.1'
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'debug', platforms: %i[mri mingw x64_mingw]
+  gem 'factory_bot_rails', '~> 6.4'
+  gem 'faker', '~> 3.2'
   gem 'rspec-rails', '~> 6.1'
   gem 'rubocop', '~> 1.59', require: false
   gem 'sqlite3', '~> 1.4'
 end
 
 group :development do
-  gem 'faker', '~> 3.2'
   gem 'listen', '~> 3.3'
   gem 'spring'
+  gem 'spring-commands-rspec', '~> 1.0'
 end
 
 group :production do
